@@ -77,5 +77,14 @@ namespace Canteen_Management_System.Controllers
             return RedirectToAction("details",new {id=customer1.Id});
             
         }
+        [HttpDelete]
+        public IActionResult Signup(int id)
+        {
+            Customer customer1 = _customerepo.DeleteCustomer(id);
+
+
+            return RedirectToAction("details", new { id = customer1.Id });
+
+        }
     }
 }
