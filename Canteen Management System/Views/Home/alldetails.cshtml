@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Customer>
+@{
+    ViewData["Title"] = "alldetails";
+}
+
+@foreach (var item in Model)
+{
+    <div class="container">
+        <div class="card">
+            <div class="card-header">@item.Name</div>
+        </div>
+        <div class="card-footer">
+            <a asp-controller="home" asp-action="details">view</a>
+            <a asp-controller="privacy" asp-action="privacy">view</a>
+        </div>
+    </div>
+}
+
