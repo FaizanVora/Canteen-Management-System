@@ -1,4 +1,6 @@
-﻿namespace Canteen_Management_System.Models
+﻿using Canteen_Management_System.Models.DbModel;
+
+namespace Canteen_Management_System.Models
 {
     public class SqlCustomerRepo : ICustomerRepo
     {
