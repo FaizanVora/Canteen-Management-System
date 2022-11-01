@@ -1,0 +1,23 @@
+﻿@model LoginViewModel
+
+<h1>
+    log in
+</h1>
+
+    <div class="container">
+        <div class="row">
+            <div class="col col-md-4">
+                <label>Username</label>
+                <input asp-for="Email" />
+            </div>
+            <div class="col col-md-4">
+                <label>password</label>
+                <input asp-for="Password" />
+            </div>
+        </div>
+        <div class="checkbox">
+            <label>remember me</label>
+            @Html.DisplayNameFor(m => m.RememberMe)
+        </div>
+        <button type="submit" >Login</button>
+    </div>

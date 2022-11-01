@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using System.Drawing.Text;
 using Microsoft.Extensions.Configuration;
 using System.Configuration;
+using Microsoft.Data.SqlClient;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,9 +14,12 @@ builder.Services.AddControllersWithViews();
 //builder.Services.AddSingleton<ICustomerRepo,MockCustomerRepo>();
 builder.Services.AddScoped<ICustomerRepo, SqlCustomerRepo>();
 /*string myDb1ConnectionString = Configuration.GetConnectionString("CanteenDbConnection");
-*/
+*//*
+builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();*/
 builder.Services.AddDbContextPool<AppDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("CanteenDbConnection")));
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -26,7 +31,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseAuthentication();
 app.UseRouting();
 
 app.UseAuthorization();

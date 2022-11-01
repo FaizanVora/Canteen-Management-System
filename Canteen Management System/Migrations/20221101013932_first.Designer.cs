@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Canteen_Management_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221025070219_initalMigtion")]
-    partial class initalMigtion
+    [Migration("20221101013932_first")]
+    partial class first
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

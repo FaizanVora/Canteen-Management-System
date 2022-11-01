@@ -1,4 +1,5 @@
 ﻿using Canteen_Management_System.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,23 +9,19 @@ namespace Canteen_Management_System.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private ICustomerRepo _customerepo;
+        private readonly SignInManager<IdentityUser> _signin;
 
-        public HomeController(ILogger<HomeController> logger, ICustomerRepo customerRepo)
+        public HomeController(ILogger<HomeController> logger, ICustomerRepo customerRepo,
+            SignInManager<IdentityUser> signin)
         {
             _logger = logger;
             _customerepo = customerRepo;
+            _signin=signin; 
         }
-       
-
-
-
-
-
-
-
-
-
-
+        public IActionResult Payment()
+        {
+            return View();
+        }
 
         public IActionResult Index()
         {
@@ -66,6 +63,7 @@ namespace Canteen_Management_System.Controllers
         {
             return View();
         }
+ 
 
 
         [HttpPost]
@@ -85,6 +83,44 @@ namespace Canteen_Management_System.Controllers
 
             return RedirectToAction("details", new { id = customer1.Id });
 
+        }
+
+        [HttpGet]
+        public IActionResult Edit(int id)
+        {
+            var customer = _customerepo.GetCustomerById(id);
+
+            return View(customer);
+        }
+
+
+        [HttpPost]
+        public IActionResult Edit(Customer customer)
+        {
+            Customer customer1=_customerepo.GetCustomerById(customer.Id);
+            customer1.Email = customer.Email; 
+            customer1.Name = customer.Name;
+            customer1.Password= customer.Password;
+            _customerepo.UpdateCustomer(customer1);
+            Response.WriteAsJsonAsync(customer1);
+            return RedirectToAction("index", new { id = customer1.Id });
+
+        }
+        public IActionResult Menu()
+        {
+            return View();
+        }
+
+
+        public async Task<IActionResult> Logout()
+        {
+            _signin.SignOutAsync();
+            return RedirectToAction("index");
+        }
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
         }
     }
 }

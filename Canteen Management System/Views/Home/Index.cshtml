@@ -3,15 +3,43 @@
 }
 @model IEnumerable<Customer>
 @*@{
-    Layout = "~/Views/Shared/_navbar.cshtml";
-}*@
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <ul>
-    @foreach (var item in Model)
-    {
-        <li>@item.Name</li>
-        <li>@item.Email</li>
-    }
-    </ul>
-</div>
+        Layout = "~/Views/Shared/_navbar.cshtml";
+    }*@
+@foreach (var emp in Model)
+	{
+         <div class="container-fluid">
+             <div class="row">
+                 <div class="col-md-12">
+                     <h3>Details </h3>
+                 </div>
+             </div>
+             <div class="row">
+                 <div class="col-md-3">
+                     <label>Name : </label>
+                 </div>
+                 <div class="col-md-3">
+                     @emp.Name
+                 </div>
+             </div>
+             <div class="row">
+                 <div class="col-md-3">
+                     <label>Email : </label>
+                 </div>
+                 <div class="col-md-3">
+                     @emp.Email
+                 </div>
+             </div>
+             <div class="row">
+ @*                <div class="col-md-4">
+                     <input type="submit" value="view" class="btn btn-primary" />
+                 </div>*@
+                 <div class="col-md-4">
+                     <a asp-controller="home"  asp-action="details" asp-route-id="@emp.Id" class="btn btn-group">view</a>
+                 </div>@*
+                 <div class="col-md-4">
+                     <input type="submit" value="Update" class="btn btn-dark" />
+                 </div>*@
+             </div>
+         </div>
+	}
+

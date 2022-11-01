@@ -52,7 +52,8 @@
             <input type="submit" value="view" class="btn btn-primary" />
         </div>
         <div class="col-md-4">
-            <input type="submit" value="Update" class="btn btn-dark" />
+            <a asp-controller="home" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-group">update</a>
+
         </div>
         <div class="col-md-4">
             <input type="submit" value="delete" class="btn btn-danger" />
