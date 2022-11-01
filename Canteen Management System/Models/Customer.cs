@@ -4,7 +4,7 @@ using System.ComponentModel;
 namespace Canteen_Management_System.Models
 {
     public class Customer
-    { 
+    {
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
@@ -12,8 +12,9 @@ namespace Canteen_Management_System.Models
         public string Password { get; set; }
         [Required]
         public string Email { get; set; }
+
+        public int Isadmin { get; set; } = 0;
         
-        public int Isadmin { get; set; }=0;
 
     }
 }

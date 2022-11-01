@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using System.Configuration;
 using Microsoft.Data.SqlClient;
 using Microsoft.AspNetCore.Identity;
+using Canteen_Management_System.Models.DbModel;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,9 +15,9 @@ builder.Services.AddControllersWithViews();
 //builder.Services.AddSingleton<ICustomerRepo,MockCustomerRepo>();
 builder.Services.AddScoped<ICustomerRepo, SqlCustomerRepo>();
 /*string myDb1ConnectionString = Configuration.GetConnectionString("CanteenDbConnection");
-*//*
+*/
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<AppDbContext>();*/
+    .AddEntityFrameworkStores<AppDbContext>();
 builder.Services.AddDbContextPool<AppDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("CanteenDbConnection")));
 var app = builder.Build();
 
@@ -33,7 +34,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthentication();
 app.UseRouting();
-
+ 
 app.UseAuthorization();
 
 app.MapControllerRoute(

@@ -1,4 +1,5 @@
 ﻿using Canteen_Management_System.Models;
+using Canteen_Management_System.Models.DbModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,20 +10,29 @@ namespace Canteen_Management_System.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private ICustomerRepo _customerepo;
-        private readonly SignInManager<IdentityUser> _signin;
+        private readonly AppDbContext _appDbContext;
+        private readonly SqlOrderRepo _orderRepo;
+
+        /* private readonly SignInManager<IdentityUser> _signin;*/
 
         public HomeController(ILogger<HomeController> logger, ICustomerRepo customerRepo,
-            SignInManager<IdentityUser> signin)
+            AppDbContext appDbContext)
         {
             _logger = logger;
             _customerepo = customerRepo;
-            _signin=signin; 
+
+            _appDbContext = appDbContext;
+            
+            /*_signin=signin;*/
         }
         public IActionResult Payment()
         {
             return View();
         }
-
+        public IActionResult menu()
+        {
+            return View();
+        }
         public IActionResult Index()
         {
             /*string str = "name:";*/
@@ -69,6 +79,7 @@ namespace Canteen_Management_System.Controllers
         [HttpPost]
         public IActionResult Signup(Customer customer)
         {
+           
           Customer customer1 = _customerepo.AddCustomer(customer);
             
             
@@ -102,25 +113,55 @@ namespace Canteen_Management_System.Controllers
             customer1.Name = customer.Name;
             customer1.Password= customer.Password;
             _customerepo.UpdateCustomer(customer1);
-            Response.WriteAsJsonAsync(customer1);
+            
             return RedirectToAction("index", new { id = customer1.Id });
 
         }
+        [HttpGet]
         public IActionResult Menu()
         {
-            return View();
+            var model = _appDbContext.Orders;
+            return View(model);
         }
 
 
-        public async Task<IActionResult> Logout()
+        /*public async Task<IActionResult> Logout()
         {
             _signin.SignOutAsync();
             return RedirectToAction("index");
-        }
+        }*/
         [HttpGet]
         public IActionResult Login()
         {
             return View();
+        }
+        [HttpGet]
+        public IActionResult CreateOrder() {
+            return View();
+                
+         }
+        [HttpPost]
+        public IActionResult CreateOrder(Order order)
+        {
+
+            Order order1 = new Order
+            {
+                OrderId = order.OrderId,
+                VegOrNonveg=order.VegOrNonveg,
+                Ordername = order.Ordername,
+                Orderphoto = order.Orderphoto,
+                Orderprice = order.Orderprice,
+            };
+
+            _appDbContext.Orders.Add(order1);
+            _appDbContext.SaveChanges();
+            return RedirectToAction("menu");
+            /*    Response.WriteAsJsonAsync(order1.Ordername);
+                _appDbContext.Orders.Add(order1);
+                return RedirectToAction("menu");*/
+
+
+
         }
     }
 }

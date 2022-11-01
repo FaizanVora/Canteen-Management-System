@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore;
-@inject Microsoft.AspNetCore.Identity.SignInManager<Microsoft.AspNetCore.Identity.IdentityUser> signInManager;
-<!DOCTYPE html>
+@*@inject Microsoft.AspNetCore.Identity.SignInManager<Microsoft.AspNetCore.Identity.IdentityUser> signInManager;
+*@<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -37,7 +37,7 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="home" asp-action="Payment">Payment</a>
                         </li>
-                        @if (signInManager.IsSignedIn(User))
+                       @* @if (signInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
                                 <form asp-action="logout" asp-controller="home" method="post">
@@ -51,7 +51,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-controller="home" asp-action="login">login</a>
                             </li>
-                        }
+                        }*@
 
                     </ul>
                 </div>
