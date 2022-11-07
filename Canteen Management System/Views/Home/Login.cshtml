@@ -1,9 +1,10 @@
-﻿@model LoginViewModel
+﻿@model Customer
 
 <h1>
     log in
 </h1>
 
+<form asp-action="login" method="post">
     <div class="container">
         <div class="row">
             <div class="col col-md-4">
@@ -15,9 +16,10 @@
                 <input asp-for="Password" />
             </div>
         </div>
-        <div class="checkbox">
+        @*  <div class="checkbox">
             <label>remember me</label>
             @Html.DisplayNameFor(m => m.RememberMe)
-        </div>
-        <button type="submit" >Login</button>
+        </div>*@
+        <input type="submit" value="Login" class="btn btn-primary" />
     </div>
+</form>

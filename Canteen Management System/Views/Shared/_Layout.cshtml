@@ -37,21 +37,27 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="home" asp-action="Payment">Payment</a>
                         </li>
-                       @* @if (signInManager.IsSignedIn(User))
-                        {
-                            <li class="nav-item">
-                                <form asp-action="logout" asp-controller="home" method="post">
-                                    <button>log out @User.Identity.Name</button>
-                                </form>
-                            </li>
-                        }
-                        else
-                        {
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="home" asp-action="Payment">Payment</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="home" asp-action="login">Login</a>
+                        </li>
+                        @* @if (signInManager.IsSignedIn(User))
+        {
+            <li class="nav-item">
+                <form asp-action="logout" asp-controller="home" method="post">
+                    <button>log out @User.Identity.Name</button>
+                </form>
+            </li>
+        }
+        else
+        {
 
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-controller="home" asp-action="login">login</a>
-                            </li>
-                        }*@
+            <li class="nav-item">
+                <a class="nav-link text-dark" asp-controller="home" asp-action="login">login</a>
+            </li>
+        }*@
 
                     </ul>
                 </div>

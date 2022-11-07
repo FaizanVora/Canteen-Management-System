@@ -1,9 +1,9 @@
 ﻿using Canteen_Management_System.Models;
-using Canteen_Management_System.Models.DbModel;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
-
+using Microsoft.EntityFrameworkCore;
 namespace Canteen_Management_System.Controllers
 {
     public class HomeController : Controller
@@ -11,9 +11,11 @@ namespace Canteen_Management_System.Controllers
         private readonly ILogger<HomeController> _logger;
         private ICustomerRepo _customerepo;
         private readonly AppDbContext _appDbContext;
-        private readonly SqlOrderRepo _orderRepo;
 
-        /* private readonly SignInManager<IdentityUser> _signin;*/
+
+        /* private readonly SqlOrderRepo _orderRepo;*/
+
+        private readonly SignInManager<Customer> _signin;
 
         public HomeController(ILogger<HomeController> logger, ICustomerRepo customerRepo,
             AppDbContext appDbContext)
@@ -22,8 +24,11 @@ namespace Canteen_Management_System.Controllers
             _customerepo = customerRepo;
 
             _appDbContext = appDbContext;
+
+            Login();
             
-            /*_signin=signin;*/
+
+            /*_signin = signin;*/
         }
         public IActionResult Payment()
         {
@@ -130,11 +135,8 @@ namespace Canteen_Management_System.Controllers
             _signin.SignOutAsync();
             return RedirectToAction("index");
         }*/
-        [HttpGet]
-        public IActionResult Login()
-        {
-            return View();
-        }
+        
+
         [HttpGet]
         public IActionResult CreateOrder() {
             return View();
@@ -162,6 +164,34 @@ namespace Canteen_Management_System.Controllers
 
 
 
+        }
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult>  Login(Customer customer)
+        {
+            if (customer != null)
+            {
+                var userDetails = await _appDbContext.Customers.FirstOrDefaultAsync(u => u.Email == customer.Email);
+                Response.WriteAsJsonAsync(userDetails);
+              /*  var role = userDetails.Isadmin;
+                if (role == 2)
+                {
+                    return RedirectToAction("Staff", "Index");
+                }
+                else if (role == 0)
+                {
+                    return RedirectToAction("Home", "Index");
+                }
+                else
+                {
+                    return RedirectToAction("Admin", "Index");
+                }*/
+            }
+            return RedirectToAction("Index");
         }
     }
 }
