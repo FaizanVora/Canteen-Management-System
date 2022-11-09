@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Canteen_Management_System.Migrations
 {
-    public partial class cart : Migration
+    public partial class my_f : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Canteen_Management_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221109115804_cart")]
-    partial class cart
+    [Migration("20221109140125_my_f")]
+    partial class my_f
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
