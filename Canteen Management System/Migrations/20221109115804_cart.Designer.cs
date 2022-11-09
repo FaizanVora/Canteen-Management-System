@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Canteen_Management_System.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20221109074426_my_t_ff")]
-    partial class my_t_ff
+    [Migration("20221109115804_cart")]
+    partial class cart
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,31 +26,26 @@ namespace Canteen_Management_System.Migrations
 
             modelBuilder.Entity("Canteen_Management_System.Models.cart", b =>
                 {
-                    b.Property<int>("cartId")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("Id")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("cartId"), 1L, 1);
 
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CustomerId")
+                    b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OrdersOrderId")
+                    b.Property<int>("cartId")
                         .HasColumnType("int");
 
                     b.Property<int>("discount")
                         .HasColumnType("int");
 
-                    b.HasKey("cartId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
+                    b.HasIndex("OrderId");
 
-                    b.HasIndex("OrdersOrderId");
-
-                    b.ToTable("Carts");
+                    b.ToTable("carts");
                 });
 
             modelBuilder.Entity("Canteen_Management_System.Models.Customer", b =>
@@ -122,19 +117,19 @@ namespace Canteen_Management_System.Migrations
                 {
                     b.HasOne("Canteen_Management_System.Models.Customer", "Customer")
                         .WithMany()
-                        .HasForeignKey("CustomerId")
+                        .HasForeignKey("Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Canteen_Management_System.Models.Order", "Orders")
+                    b.HasOne("Canteen_Management_System.Models.Order", "Order")
                         .WithMany()
-                        .HasForeignKey("OrdersOrderId")
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Customer");
 
-                    b.Navigation("Orders");
+                    b.Navigation("Order");
                 });
 #pragma warning restore 612, 618
         }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Canteen_Management_System.Migrations
 {
-    public partial class my_t_ff : Migration
+    public partial class cart : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -45,48 +45,42 @@ namespace Canteen_Management_System.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Carts",
+                name: "carts",
                 columns: table => new
                 {
-                    cartId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false),
+                    cartId = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CustomerId = table.Column<int>(type: "int", nullable: false),
-                    OrdersOrderId = table.Column<int>(type: "int", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: false),
                     discount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Carts", x => x.cartId);
+                    table.PrimaryKey("PK_carts", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Carts_Customers_CustomerId",
-                        column: x => x.CustomerId,
+                        name: "FK_carts_Customers_Id",
+                        column: x => x.Id,
                         principalTable: "Customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Carts_Orders_OrdersOrderId",
-                        column: x => x.OrdersOrderId,
+                        name: "FK_carts_Orders_OrderId",
+                        column: x => x.OrderId,
                         principalTable: "Orders",
                         principalColumn: "OrderId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Carts_CustomerId",
-                table: "Carts",
-                column: "CustomerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Carts_OrdersOrderId",
-                table: "Carts",
-                column: "OrdersOrderId");
+                name: "IX_carts_OrderId",
+                table: "carts",
+                column: "OrderId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Carts");
+                name: "carts");
 
             migrationBuilder.DropTable(
                 name: "Customers");

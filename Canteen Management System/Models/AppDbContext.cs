@@ -25,7 +25,7 @@ namespace Canteen_Management_System.Models
         }*/
 
 
-        public DbSet<cart> Carts { get; set; }
+        public DbSet<cart> carts { get; set; }
 
     }
 }

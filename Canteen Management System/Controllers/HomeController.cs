@@ -211,8 +211,10 @@ namespace Canteen_Management_System.Controllers
         }
         public IActionResult cart(cart Cart1)
         {
-            Cart1.Customer.Name = customer1.Name;
-            return View(Cart1);
+            /*Cart1.customers.Email = customer1.Email;
+            Cart1.customers.Password = customer1.Password;*/
+            var model = _appDbContext.carts;
+            return View(model);
         }
 
 
