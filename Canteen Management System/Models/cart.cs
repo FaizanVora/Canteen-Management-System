@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing.Printing;
 
 namespace Canteen_Management_System.Models
 {
@@ -9,16 +10,10 @@ namespace Canteen_Management_System.Models
         
 
 
-        [ForeignKey ("OrderId")]
-        public Order Order { get; set; }
-
-
-        [ForeignKey ("Id")]
-        public Customer Customer { get; set; }
-        
-
-        public int discount { get; set; }  
-        
+       /* public string CustomerName { get; set; }
+        public string OrderName { get; set; }
+        public int Price { get; set; }
+        public int discount { get; set;}*/
 
     }
 }
