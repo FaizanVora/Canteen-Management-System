@@ -10,10 +10,10 @@ namespace Canteen_Management_System.Models
         
 
 
-       /* public string CustomerName { get; set; }
+        public string CustomerName { get; set; }
         public string OrderName { get; set; }
         public int Price { get; set; }
-        public int discount { get; set;}*/
+        public int discount { get; set;}
 
     }
 }
