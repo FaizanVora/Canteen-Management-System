@@ -28,12 +28,12 @@ namespace Canteen_Management_System.Models
             email.Subject = mailRequest.Subject;
             using (SmtpClient client = new SmtpClient())
             {
-                client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+               /* client.ServerCertificateValidationCallback = (s, c, h, e) => true;
                 client.CheckCertificateRevocation = false;
                 await client.ConnectAsync(_mailSettings.Host, _mailSettings.Port, false);
                 await client.AuthenticateAsync(_mailSettings.Email, _mailSettings.Password);
                 await client.SendAsync(email);
-                client.Dispose();
+                client.Dispose(); */
             }
         }
     }

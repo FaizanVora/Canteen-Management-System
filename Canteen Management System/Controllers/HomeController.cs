@@ -180,10 +180,10 @@ namespace Canteen_Management_System.Controllers
                 var userDetails1 =await _appDbContext.Customers.FirstOrDefaultAsync(u => u.Password == customer.Password);
                 if(userDetails1 == userDetails)
                 {
-                    customer1.Password = userDetails1.Password;
-                    customer1.Email = userDetails1.Email;   
+                    /*customer1.Password = userDetails1.Password;
+                    customer1.Email = userDetails1.Email;   */
                     // Response.WriteAsJsonAsync(userDetails);
-                    return RedirectToAction("edit"  , new {id = userDetails.Id});
+                    return RedirectToAction("edit"  , new {id = userDetails1.Id});
                 }
                 
                 else
@@ -217,6 +217,33 @@ namespace Canteen_Management_System.Controllers
             return View(model);
         }
 
+        // GET: Car/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var cust1 = await _appDbContext.Customers.FirstOrDefaultAsync(m => m.Id == id);
+            if (cust1 == null)
+            {
+                return NotFound();
+            }
+
+            return View(cust1);
+        }
+
+        // POST: Car/Delete/5
+        [HttpPost]
+        
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+           /* var cust1 = await _appDbContext.Customers.FindAsync(id);
+            _appDbContext.Customers.Remove(cust1);*/
+            _customerepo.DeleteCustomer(id);
+            await _appDbContext.SaveChangesAsync();
+            return RedirectToAction("index" , new { id = customer1.Id });
+        }
     }
 }

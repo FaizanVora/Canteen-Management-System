@@ -52,11 +52,11 @@
             <input type="submit" value="view" class="btn btn-primary" />
         </div>
         <div class="col-md-4">
-            <a asp-controller="home" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-group">update</a>
+            <a asp-controller="home" asp-action="edit" asp-route-id="@Model.Id" class="btn btn-secondar">update</a>
 
         </div>
         <div class="col-md-4">
-            <input type="submit" value="delete" class="btn btn-danger" />
+            <a asp-controller="home" asp-action="delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
         </div>
     </div>
 </div>
