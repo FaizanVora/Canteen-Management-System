@@ -17,13 +17,17 @@
 
         public Customer DeleteCustomer(int id)
         {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             Customer customer=context.Customers.Find(id);
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
             if (customer!=null)
             {
                 context.Remove(customer);
             }
             context.SaveChanges();
+#pragma warning disable CS8603 // Possible null reference return.
             return customer;
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         public IEnumerable<Customer> GetallCustomer()
@@ -33,7 +37,9 @@
 
         public Customer GetCustomerById(int id)
         {
+#pragma warning disable CS8603 // Possible null reference return.
             return context.Customers.Find(id);
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         public Customer UpdateCustomer(Customer customerchange)

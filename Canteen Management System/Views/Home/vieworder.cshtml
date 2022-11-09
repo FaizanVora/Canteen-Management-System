@@ -1,0 +1,41 @@
+﻿@model Order
+@{
+    ViewData["Title"] = "vieworder";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Details </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label>Name : </label>
+        </div>
+        <div class="col-md-3">
+            @Model.Ordername
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-3">
+            <label>Email : </label>
+        </div>
+        <div class="col-md-3">
+            @Model.Orderprice
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <input type="submit" value="view" class="btn btn-primary" />
+        </div>
+        <div class="col-md-4">
+            <a asp-controller="home" asp-action="editorder" asp-route-id="@Model.OrderId" class="btn btn-secondary">update</a>
+
+        </div>
+        <div class="col-md-4">
+            <a asp-controller="home" asp-action="deleteorder" asp-route-id="@Model.OrderId" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+
