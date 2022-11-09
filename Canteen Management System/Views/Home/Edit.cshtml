@@ -29,9 +29,14 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Isadmin" class="control-label"></label>
-                <input asp-for="Isadmin" class="form-control" />
-                <span asp-validation-for="Isadmin" class="text-danger"></span>
+                <label asp-for="height" class="control-label"></label>
+                <input asp-for="@Model.height" class="form-control" />
+                <span asp-validation-for="height" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="wight" class="control-label"></label>
+                <input asp-for="@Model.wight" class="form-control" />
+                <span asp-validation-for="wight" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

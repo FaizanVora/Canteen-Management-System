@@ -11,7 +11,7 @@ namespace Canteen_Management_System.Controllers
         private readonly ILogger<HomeController> _logger;
         private ICustomerRepo _customerepo;
         private readonly AppDbContext _appDbContext;
-
+        private  Customer customer1;
 
         /* private readonly SqlOrderRepo _orderRepo;*/
 
@@ -176,7 +176,23 @@ namespace Canteen_Management_System.Controllers
             if (customer != null)
             {
                 var userDetails = await _appDbContext.Customers.FirstOrDefaultAsync(u => u.Email == customer.Email);
-                Response.WriteAsJsonAsync(userDetails);
+                
+                var userDetails1 =await _appDbContext.Customers.FirstOrDefaultAsync(u => u.Password == customer.Password);
+                if(userDetails1 == userDetails)
+                {
+                    customer1.Password = userDetails1.Password;
+                    customer1.Email = userDetails1.Email;   
+                    // Response.WriteAsJsonAsync(userDetails);
+                    return RedirectToAction("edit"  , new {id = userDetails.Id});
+                }
+                
+                else
+                {
+                    return RedirectToAction("login");
+                }
+                //khushal
+                
+                
               /*  var role = userDetails.Isadmin;
                 if (role == 2)
                 {
@@ -193,5 +209,12 @@ namespace Canteen_Management_System.Controllers
             }
             return RedirectToAction("Index");
         }
+        public IActionResult cart(cart Cart1)
+        {
+            Cart1.Customer.Name = customer1.Name;
+            return View(Cart1);
+        }
+
+
     }
 }

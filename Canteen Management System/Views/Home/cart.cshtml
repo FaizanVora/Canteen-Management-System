@@ -1,50 +1,7 @@
-﻿@model Canteen_Management_System.Models.Order
-
+﻿@model cart
 @{
-    ViewData["Title"] = "CreateOrder";
+    ViewData["Title"] = "cart";
 }
 
-<h1>CreateOrder</h1>
-
-<h4>Order</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="CreateOrder" method="post">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Orderprice" class="control-label"></label>
-                <input asp-for="Orderprice" class="form-control" />
-                <span asp-validation-for="Orderprice" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Orderphoto" class="control-label"></label>
-                <input asp-for="Orderphoto" class="form-control" />
-                <span asp-validation-for="Orderphoto" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Ordername" class="control-label"></label>
-                <input asp-for="Ordername" class="form-control" />
-                <span asp-validation-for="Ordername" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="VegOrNonveg" class="control-label"></label>
-                <input asp-for="VegOrNonveg" class="form-control" />
-                <span asp-validation-for="VegOrNonveg" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="SelectCount" class="control-label"></label>
-                <input asp-for="SelectCount" class="form-control" />
-                <span asp-validation-for="SelectCount" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<h1>@Model.Customer.Id</h1>
 
