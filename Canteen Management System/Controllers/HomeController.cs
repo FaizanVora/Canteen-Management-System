@@ -237,13 +237,18 @@ namespace Canteen_Management_System.Controllers
         // POST: Car/Delete/5
         [HttpPost]
         
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult Delete(int id)
         {
            /* var cust1 = await _appDbContext.Customers.FindAsync(id);
             _appDbContext.Customers.Remove(cust1);*/
             _customerepo.DeleteCustomer(id);
-            await _appDbContext.SaveChangesAsync();
-            return RedirectToAction("index" , new { id = customer1.Id });
+             _appDbContext.SaveChangesAsync();
+            return RedirectToAction("index");
+        }
+        [HttpDelete]
+        public IActionResult DeleteOrder()
+        {
+            return View();
         }
     }
 }
