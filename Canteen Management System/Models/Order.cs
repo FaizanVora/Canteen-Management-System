@@ -9,6 +9,6 @@
         public string Ordername { get; set; }
         public string VegOrNonveg { get; set; }
         public int SelectCount { get; set; }
-        
+
     }
 }

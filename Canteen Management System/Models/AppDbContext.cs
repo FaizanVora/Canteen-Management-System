@@ -15,6 +15,7 @@ namespace Canteen_Management_System.Models
         }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<cart> carts { get; set; }
 
         /*protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -25,7 +26,7 @@ namespace Canteen_Management_System.Models
         }*/
 
 
-        public DbSet<cart> carts { get; set; }
+
 
     }
 }
