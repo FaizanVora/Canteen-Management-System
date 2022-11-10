@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Canteen Management System/Views/Home/addcart.cshtml
+/Canteen Management System/Migrations/20221110010429_item.cs
+/Canteen Management System/Migrations/20221110010429_item.Designer.cs
+/Canteen Management System/Migrations

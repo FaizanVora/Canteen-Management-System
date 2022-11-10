@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Order>
 
+
 <link href="~/css/menu.css" rel="stylesheet" />
 <h1 class="text-center text-uppercase">Food Order Card</h1>
 @foreach (var order in Model)
@@ -51,5 +52,5 @@
                 </div>
             </div>
         </div>
-    
+    <a asp-controller="home" asp-action="viewOrder" asp-route-id="@order.OrderId" class="btn btn-group">view</a>
 }

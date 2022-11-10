@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+#pragma warning disable CS0105 // The using directive for 'Microsoft.EntityFrameworkCore' appeared previously in this namespace
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Bcpg;
+#pragma warning restore CS0105 // The using directive for 'Microsoft.EntityFrameworkCore' appeared previously in this namespace
 namespace Canteen_Management_System.Controllers
 {
     public class HomeController : Controller
@@ -11,13 +14,21 @@ namespace Canteen_Management_System.Controllers
         private readonly ILogger<HomeController> _logger;
         private ICustomerRepo _customerepo;
         private readonly AppDbContext _appDbContext;
+#pragma warning disable CS0169 // The field 'HomeController.customer1' is never used
         private  Customer customer1;
+#pragma warning restore CS0169 // The field 'HomeController.customer1' is never used
 
         /* private readonly SqlOrderRepo _orderRepo;*/
 
+#pragma warning disable CS0169 // The field 'HomeController._signin' is never used
         private readonly SignInManager<Customer> _signin;
+#pragma warning restore CS0169 // The field 'HomeController._signin' is never used
 
+#pragma warning disable CS8618 // Non-nullable field 'customer1' must contain a non-null value when exiting constructor. Consider declaring the field as nullable.
+#pragma warning disable CS8618 // Non-nullable field '_signin' must contain a non-null value when exiting constructor. Consider declaring the field as nullable.
         public HomeController(ILogger<HomeController> logger, ICustomerRepo customerRepo,
+#pragma warning restore CS8618 // Non-nullable field '_signin' must contain a non-null value when exiting constructor. Consider declaring the field as nullable.
+#pragma warning restore CS8618 // Non-nullable field 'customer1' must contain a non-null value when exiting constructor. Consider declaring the field as nullable.
             AppDbContext appDbContext)
         {
             _logger = logger;
@@ -52,6 +63,16 @@ namespace Canteen_Management_System.Controllers
 
             return View(customer);
             
+
+        }
+        public IActionResult vieworder(int? id)
+        {
+            Order order = _appDbContext.Orders.Find(id);
+            
+            /* ViewBag.Customer = customer;  */
+
+            return View(order);
+
 
         }
         public IActionResult Alldetails()
@@ -183,7 +204,9 @@ namespace Canteen_Management_System.Controllers
                     /*customer1.Password = userDetails1.Password;
                     customer1.Email = userDetails1.Email;   */
                     // Response.WriteAsJsonAsync(userDetails);
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                     return RedirectToAction("edit"  , new {id = userDetails1.Id});
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
                 }
                 
                 else
@@ -245,10 +268,24 @@ namespace Canteen_Management_System.Controllers
              _appDbContext.SaveChangesAsync();
             return RedirectToAction("index");
         }
-        [HttpDelete]
-        public IActionResult DeleteOrder()
+
+
+/*
+        
+        public  IActionResult DeleteOrder(int orderId)
         {
-            return View();
+            var order1 =  _appDbContext.Orders.Find(orderId);
+            _appDbContext.Orders.Remove(order1);
+            _appDbContext.SaveChanges();
+
+            return RedirectToAction("index");
+        }*/
+
+        public IActionResult EditOrder(int orderId)
+        {
+           
+
+            return RedirectToAction("index");
         }
     }
 }
